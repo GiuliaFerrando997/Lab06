@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +48,32 @@ public class MeteoDAO {
 	public Double getAvgRilevamentiLocalitaMese(int mese, String localita) {
 
 		return 0.0;
+	}
+
+	public String getUmidita(Month mese) {
+		String result = "";
+		final String sql = "SELECT Localita, Umidita FROM situazione WHERE MONTH(DATA)=?";
+		try {
+			Connection conn = DBConnect.getInstance().getConnection();
+			PreparedStatement st = conn.prepareStatement(sql);
+			st.setInt(1, mese.getValue());
+			ResultSet rs = st.executeQuery();
+
+			while (rs.next()) {
+
+				result += rs.getString("Localita")+" "+rs.getInt("Umidita")+"\n";
+
+			}
+			result=result.trim();
+
+			conn.close();
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		return result;
 	}
 
 }

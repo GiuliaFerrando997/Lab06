@@ -1,4 +1,6 @@
-package it.polito.tdp.meteo;
+package it.polito.tdp.meteo.model;
+
+import java.time.Month;
 
 public class TestModel {
 
@@ -6,7 +8,7 @@ public class TestModel {
 
 		Model m = new Model();
 		
-		System.out.println(m.getUmiditaMedia(12));
+		System.out.println(m.getUmiditaMedia(Month.of(12)));
 		
 		System.out.println(m.trovaSequenza(5));
 		

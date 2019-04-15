@@ -1,5 +1,6 @@
 package it.polito.tdp.meteo;
 
+import it.polito.tdp.meteo.model.Model;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -18,6 +19,8 @@ public class Main extends Application {
 
 			MeteoController controller = loader.getController();
 			// TODO impostare il model nel controller
+			Model model = new Model();
+			controller.setModel(model);
 
 			primaryStage.setScene(scene);
 			primaryStage.show();
